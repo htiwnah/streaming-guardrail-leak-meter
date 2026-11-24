@@ -1,0 +1,12 @@
+{
+  "screenshots": [
+    {
+      "file": "docs/screenshots/01_audit_terminal.png",
+      "exit_code": 1
+    },
+    {
+      "file": "docs/screenshots/02_receipts_terminal.png",
+      "exit_code": 0
+    }
+  ]
+}
