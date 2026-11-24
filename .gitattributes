@@ -1,0 +1,19 @@
+* text=auto eol=lf
+*.py linguist-language=Python
+*.sql linguist-language=SQL
+*.sh linguist-language=Shell
+*.html linguist-language=HTML
+*.css linguist-language=CSS
+*.json linguist-language=JSON
+*.jsonl linguist-language=JSONL
+*.svg linguist-language=SVG
+*.yml linguist-language=YAML
+*.yaml linguist-language=YAML
+*.md linguist-language=Markdown linguist-documentation=true
+docs/experiments/*.json linguist-generated=true
+docs/metrics.json linguist-generated=true
+docs/screenshots/*.png linguist-generated=true
+docs/screenshots/manifest.json linguist-generated=true
+docs/video/*.gif linguist-generated=true
+docs/video/*.mp4 linguist-generated=true
+docs/video/manifest.json linguist-generated=true

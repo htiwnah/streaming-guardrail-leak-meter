@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=65.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "streaming-guardrail-leak-meter"
+version = "1.0.0"
+description = "Measures UTF-8 bytes leaked before stream cutoff across chunk boundaries in streaming AI guardrails"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Sai Hanwith Bellamkonda", email = "saihanwith.b@mycvcareer.com"}
+]
+dependencies = []
+
+[project.scripts]
+guardrail-meter = "streaming_guardrail_leak_meter.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

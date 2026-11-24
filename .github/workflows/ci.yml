@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install build backend and package
+        run: |
+          python3 -m pip install --upgrade pip setuptools wheel
+          python3 -m pip install --no-build-isolation .
+
+      - name: Run repository hygiene and lint checks
+        run: python3 tools/check_repo_hygiene.py
+
+      - name: Run unit and property tests
+        run: python3 -m unittest discover -s tests -p "test_*.py" -v
+
+      - name: Re-run experiments and verify coverage floor and numeric receipts
+        run: |
+          python3 tools/collect_metrics.py
+          python3 -c "import json; m=json.load(open('docs/metrics.json'))['metrics']; assert m['coverage_line_pct'] >= 95.0, m['coverage_line_pct']"
+          python3 tools/check_numbers.py
+
+      - name: Publish diagnostic comparison table to job summary
+        run: |
+          python3 -m streaming_guardrail_leak_meter.cli measure --fixture fixtures/stream_chunks.jsonl --policy policy/meter_policy.json --out reports/ci.json >> "$GITHUB_STEP_SUMMARY" || true
+
+      - name: Upload audit and experiment artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: streaming-guardrail-leak-meter-py${{ matrix.python-version }}
+          path: |
+            docs/metrics.json
+            docs/experiments/*.json

@@ -1,0 +1,5 @@
+{
+  "policy_version": "1.0",
+  "max_allowed_leaked_bytes": 0,
+  "fixture_path": "fixtures/stream_chunks.jsonl"
+}
