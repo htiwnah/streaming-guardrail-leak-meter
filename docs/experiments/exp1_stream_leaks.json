@@ -1,0 +1,8 @@
+{
+  "total_streams": 24,
+  "leaking_streams_count": 8,
+  "split_trigger_streams_count": 8,
+  "total_leaked_bytes": 120,
+  "worst_leaked_bytes": 15,
+  "resolution_floor_pct": 4.17
+}

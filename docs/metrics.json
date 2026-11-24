@@ -1,0 +1,49 @@
+{
+  "metrics": {
+    "tests_total": 73,
+    "tests_passed": true,
+    "coverage_line_pct": 99.12,
+    "total_streams": 24,
+    "leaking_streams_count": 8,
+    "split_trigger_streams_count": 8,
+    "total_leaked_bytes": 120,
+    "worst_leaked_bytes": 15,
+    "resolution_floor_pct": 4.17
+  },
+  "anchors": {
+    "tests_total": [
+      "{} tests"
+    ],
+    "coverage_line_pct": [
+      "{}% line coverage"
+    ],
+    "total_streams": [
+      "{} evaluated streams"
+    ],
+    "leaking_streams_count": [
+      "{} leaking streams"
+    ],
+    "split_trigger_streams_count": [
+      "{} split-trigger streams"
+    ],
+    "total_leaked_bytes": [
+      "{} leaked bytes"
+    ],
+    "worst_leaked_bytes": [
+      "{} bytes worst"
+    ],
+    "resolution_floor_pct": [
+      "{}% resolution floor"
+    ]
+  },
+  "checked_documents": [
+    "README.md",
+    "CHANGELOG.md",
+    "docs/adr/ADR-001-price-leaked-bytes-pre-cut.md",
+    "docs/adr/ADR-002-explicit-three-way-exit-codes.md",
+    "docs/adr/ADR-003-stdlib-core-and-python312-ci.md",
+    "docs/adr/ADR-004-split-chunk-trigger-detection.md",
+    "docs/adr/ADR-005-streaming-boundaries.md"
+  ],
+  "note": "Every value here is produced by running tests and offline experiments."
+}
