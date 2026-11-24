@@ -45,14 +45,26 @@ class TestLeakMeterProperties(unittest.TestCase):
                 load_streams(b)
             ec = Path(tmp) / "ec.jsonl"
             ec.write_text(
-                json.dumps({"stream_id": "S1", "chunks": [], "trigger_token": "X", "cut_after_chunk_index": 0})
+                json.dumps(
+                    {
+                        "stream_id": "S1",
+                        "chunks": [],
+                        "trigger_token": "X",
+                        "cut_after_chunk_index": 0,
+                    }
+                )
                 + "\n",
                 encoding="utf-8",
             )
             with self.assertRaises(ValueError):
                 load_streams(ec)
             n = Path(tmp) / "n.jsonl"
-            row = {"stream_id": "SN", "chunks": [None, "abc"], "trigger_token": "abc", "cut_after_chunk_index": 0}
+            row = {
+                "stream_id": "SN",
+                "chunks": [None, "abc"],
+                "trigger_token": "abc",
+                "cut_after_chunk_index": 0,
+            }
             n.write_text(json.dumps(row) + "\n", encoding="utf-8")
             s = measure_streams(load_streams(n), MeterPolicy())
             self.assertEqual(s.verdicts[0].status, "CUT_BEFORE_EMIT")

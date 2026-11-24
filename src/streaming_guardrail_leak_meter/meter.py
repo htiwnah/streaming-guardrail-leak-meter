@@ -86,7 +86,9 @@ def load_streams(path: str | Path) -> list[StreamEpisode]:
             raise ValueError(f"chunks must be non-empty list on line {ln_no}")
         chunks = tuple("" if c is None else str(c) for c in raw_c)
         trig = "" if r.get("trigger_token") is None else str(r["trigger_token"])
-        out.append(StreamEpisode(str(r["stream_id"]), chunks, trig, int(r["cut_after_chunk_index"])))
+        out.append(
+            StreamEpisode(str(r["stream_id"]), chunks, trig, int(r["cut_after_chunk_index"]))
+        )
     if not out:
         raise ValueError(f"No streams in {p}")
     return out
